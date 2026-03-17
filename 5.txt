@@ -1,0 +1,18 @@
+DROP FUNCTION IF EXISTS DivideNumbers;
+DELIMITER //
+
+CREATE FUNCTION DivideNumbers(val1 FLOAT, val2 FLOAT) 
+RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+    RETURN val1 / val2;
+END //
+
+DELIMITER ;
+
+SELECT 
+    id, 
+    order_id, 
+    quantity, 
+    DivideNumbers(quantity, 2.0) AS divided_quantity
+FROM order_details;
